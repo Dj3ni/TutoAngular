@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input, InputSignal } from '@angular/core';
 import { Monster } from '../../models/monster.model';
 
 
@@ -12,12 +12,7 @@ export class PlayingCardComponent {
     imageUrl : any ="/img/energyIcons/electric.png";
 
     //En faisant cela on les transforme en attributs
-    @Input({
-      transform:(value:Monster) => {
-        value.hp = value.hp/2
-        return value;
-      }
-    })
-    public monster : Monster = new Monster();
+    
+    public monster : InputSignal<Monster> = input(new Monster());
 
 }

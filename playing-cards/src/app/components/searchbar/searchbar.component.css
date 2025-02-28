@@ -1,0 +1,36 @@
+#search-bar {
+    display: flex;
+    background-color: white;
+    border-radius: 40px;
+    margin: 50px auto;
+    width: 400px;
+    box-shadow: 3px 3px 10px -3px grey;
+    overflow: hidden;
+}
+
+button {
+    border: none;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 40px;
+    background-color: rgb(205, 205, 255);
+    width: 30px;
+    cursor: pointer;
+}
+
+input {
+    /* Enlève tous les paramètres par défaut */
+    all:unset;
+    /*Prend toute la place  */
+    flex-grow: 1;
+    padding: 10px 20px;
+}
+
+button img {
+    max-width: 18px;
+    max-height: 18px;
+}
+
+button:hover {
+    background-color: rgb(179,179,255);
+}
