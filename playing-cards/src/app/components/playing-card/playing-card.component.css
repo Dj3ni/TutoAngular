@@ -79,6 +79,7 @@ figure#art {
     }
     .name {
         flex-grow: 1;
+        /* text-align: center; */
     }
     .cost {
         display: flex;
@@ -87,5 +88,6 @@ figure#art {
     }
     .description {
         font-size: smaller;
+        padding: 5px;
     }
 }
