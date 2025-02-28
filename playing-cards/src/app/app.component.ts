@@ -14,11 +14,17 @@ import { SearchbarComponent } from "./components/searchbar/searchbar.component";
 export class AppComponent {
 
   monster1! : Monster;
+  count : number = 0;
+  search : string = '';
 
   constructor(){
     this.monster1 = new Monster();
     this.monster1.name = "Pikachu";
     this.monster1.hp = 40;
     this.monster1.figureCaption ='N°002 Pikachu'
+  }
+
+  public increaseCount(){
+    this.count++;
   }
 }

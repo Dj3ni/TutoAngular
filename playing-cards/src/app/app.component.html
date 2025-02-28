@@ -1,4 +1,12 @@
-<app-searchbar/>
+<app-searchbar
+ (searchButtonClicked)="increaseCount()" [(search)]="search"/>
+
+ <!-- Cette annotation [(search)]="search" est un raccourcis de ces deux-ci:
+ (searchChange)="search = $event"
+ [search]="search" -->
+
+ Search: {{search}}
+Click-count :{{count}}
 
 <div id="card-list">
     <app-playing-card/>
