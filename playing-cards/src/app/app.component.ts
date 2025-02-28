@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PlayingCardComponent } from './components/playing-card/playing-card.component';
+import { Monster } from './models/monster.model';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,13 @@ import { PlayingCardComponent } from './components/playing-card/playing-card.com
   styleUrl: './app.component.css' // lien vers feuille de style
 })
 export class AppComponent {
-  title = 'playing-cards';
+
+  monster1! : Monster;
+
+  constructor(){
+    this.monster1 = new Monster();
+    this.monster1.name = "Pikachu";
+    this.monster1.hp = 40;
+    this.monster1.figureCaption ='N°002 Pikachu'
+  }
 }
