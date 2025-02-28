@@ -11,8 +11,10 @@ import { Monster } from '../../models/monster.model';
 export class PlayingCardComponent {
     imageUrl : any ="/img/energyIcons/electric.png";
 
-    //En faisant cela on les transforme en attributs
-    
+    //En faisant cela on les transforme en attributs    
     public monster : InputSignal<Monster> = input(new Monster());
 
+
+    public MonsterTypeIcon : string = 'img/cards/pikachu.png';
+    public backgroundColor : string = 'rgb(255,255,104)';
 }

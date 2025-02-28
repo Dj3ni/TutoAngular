@@ -1,5 +1,5 @@
 <div id="card">
-    <div id="inside">
+    <div id="inside" [style.background-color]="backgroundColor">
         <header>
             <div class="left">
                 <div class="name">{{monster().name}}</div>
@@ -10,7 +10,7 @@
             </div>
         </header>
         <figure id="art">
-            <img src="/img/cards/pikachu.png" alt="pokemon image">
+            <img [src]="monster().image" alt="pokemon image">
             <figcaption>{{monster().figureCaption}}</figcaption>
         </figure>
         <div id="capacities">

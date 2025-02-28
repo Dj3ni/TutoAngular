@@ -6,9 +6,15 @@
  [search]="search" -->
 
  Search: {{search}}
+ <br>
 Click-count :{{count}}
 
+<button (click)="toggleMonster()">Toggle Monster</button>
 <div id="card-list">
-    <app-playing-card/>
+    <h3>Toggled card</h3>
+        <app-playing-card [monster]="monsters[selectedMonsterIndex]"/>
+    <h3>All cards</h3>
+    <app-playing-card />
     <app-playing-card [monster]="monster1"/>
+    <app-playing-card [monster]="monster2"/>
 </div>
