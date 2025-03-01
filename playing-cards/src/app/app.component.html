@@ -1,24 +1,26 @@
-<app-searchbar
- (searchButtonClicked)="increaseCount()" [(search)]="search"/>
+<!-- <app-searchbar
+ (searchButtonClicked)="increaseCount()" [(search)]="search"/> -->
 
  <!-- Cette annotation [(search)]="search" est un raccourcis de ces deux-ci:
  (searchChange)="search = $event"
  [search]="search" -->
 
- Search: {{search}}
+ <!-- Search: {{search}}
  <br>
-Click-count :{{count}}
+Click-count :{{count}} -->
 
-<button (click)="toggleMonster()">Toggle Monster</button>
+<!-- <button (click)="toggleMonster()">Toggle Monster</button> -->
 <div id="card-list">
-    <h3>Toggled card</h3>
+    <!-- <h3>Toggled card</h3> -->
     <!-- Sans signal -->
         <!-- <app-playing-card [monster]="monsters[selectedMonsterIndex()]"/> -->
     <!-- Avec signal -->
-    <app-playing-card [monster]="selectedMonster()"/>
+    <!-- <app-playing-card [monster]="selectedMonster()"/> -->
 
-    <h3>All cards</h3>
-    <app-playing-card />
+    <!-- <h3>All cards</h3> -->
+    <app-playing-card *ngFor="let monster of monsters" [monster] = "monster"/>
+
+    <!-- <app-playing-card />
     <app-playing-card [monster]="monster1"/>
-    <app-playing-card [monster]="monster2"/>
+    <app-playing-card [monster]="monster2"/> -->
 </div>
