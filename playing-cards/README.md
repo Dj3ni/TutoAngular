@@ -1,3 +1,9 @@
+https://www.bbc.com/news/world-us-canada-47826919
+https://www.deviantart.com/biochao/art/Water-Energy-card-vector-symbol-906615699
+https://eezyr.com/blog/simpletech/code/8
+https://www.youtube.com/watch?v=U71TQN68QGU (1h28:54)
+
+
 # PlayingCards
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
