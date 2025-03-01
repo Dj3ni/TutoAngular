@@ -9,8 +9,8 @@ import { MonsterService } from './services/monster/monster-service';
 
 @Component({
   selector: 'app-root',
-  // imports: [RouterOutlet],
-  imports: [CommonModule, PlayingCardComponent, SearchbarComponent],
+  imports: [RouterOutlet],
+  //imports: [CommonModule, PlayingCardComponent, SearchbarComponent],
   templateUrl: './app.component.html', // lien vers feuille html
   styleUrl: './app.component.css' // lien vers feuille de style
 })
