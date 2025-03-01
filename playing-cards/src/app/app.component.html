@@ -12,7 +12,11 @@ Click-count :{{count}}
 <button (click)="toggleMonster()">Toggle Monster</button>
 <div id="card-list">
     <h3>Toggled card</h3>
-        <app-playing-card [monster]="monsters[selectedMonsterIndex()]"/>
+    <!-- Sans signal -->
+        <!-- <app-playing-card [monster]="monsters[selectedMonsterIndex()]"/> -->
+    <!-- Avec signal -->
+    <app-playing-card [monster]="selectedMonster()"/>
+
     <h3>All cards</h3>
     <app-playing-card />
     <app-playing-card [monster]="monster1"/>

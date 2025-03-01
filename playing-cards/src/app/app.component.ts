@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PlayingCardComponent } from './components/playing-card/playing-card.component';
 import { Monster } from './models/monster.model';
@@ -20,14 +20,24 @@ export class AppComponent {
   search : string = '';
 
     constructor(){
+      // utilisation signal effect()
+
+      effect(()=>{
+        console.log(this.selectedMonster());
+      })
+
+
+      // Init tableau monsters
       this.monsters = [];
+      // Init Pikachu
     this.monster1 = new Monster();
       this.monster1.name = "Pikachu";
       this.monster1.hp = 40;
       this.monster1.figureCaption ='N°002 Pikachu';
-      // this.monster1.type = MonsterType.ELECTRIC;
-      // this.monster1.image = '/img/cards/pikachu.png';
+      this.monster1.type = MonsterType.ELECTRIC;
+      this.monster1.image = '/img/cards/pikachu.png';
     this.monsters.push(this.monster1);
+    // Init Carapuce
     this.monster2 = new Monster();
       this.monster2.name = "Carapuce";
       this.monster2.hp = 60;
@@ -44,7 +54,12 @@ export class AppComponent {
   // toggle Monster
 
   //public selectedMonsterIndex = 0; // Sans signal
+  // Avec signal: 
   public selectedMonsterIndex = signal(0);
+  public selectedMonster = computed(()=> {
+    return this.monsters[this.selectedMonsterIndex()]
+  })
+  
   public monsters! : Monster[];
 
   public toggleMonster(){
