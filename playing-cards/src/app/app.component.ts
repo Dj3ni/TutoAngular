@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PlayingCardComponent } from './components/playing-card/playing-card.component';
 import { Monster } from './models/monster.model';
@@ -25,6 +25,8 @@ export class AppComponent {
       this.monster1.name = "Pikachu";
       this.monster1.hp = 40;
       this.monster1.figureCaption ='N°002 Pikachu';
+      // this.monster1.type = MonsterType.ELECTRIC;
+      // this.monster1.image = '/img/cards/pikachu.png';
     this.monsters.push(this.monster1);
     this.monster2 = new Monster();
       this.monster2.name = "Carapuce";
@@ -41,10 +43,12 @@ export class AppComponent {
 
   // toggle Monster
 
-  public selectedMonsterIndex = 0;
+  //public selectedMonsterIndex = 0; // Sans signal
+  public selectedMonsterIndex = signal(0);
   public monsters! : Monster[];
 
   public toggleMonster(){
-    this.selectedMonsterIndex = (this.selectedMonsterIndex + 1) % this.monsters.length;
+    //this.selectedMonsterIndex = (this.selectedMonsterIndex + 1) % this.monsters.length; // sans signal
+    this.selectedMonsterIndex.set((this.selectedMonsterIndex() + 1) % this.monsters.length);
   }
 }

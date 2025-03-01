@@ -22,11 +22,11 @@ export const MonsterTypeProperties : {[key:string] : IMonsterProperties} = {
     },
     [MonsterType.FIRE]: {
         imageUrl:'/img/energyIcons/fire.png',
-        color: 'rgba(255,104,124)'
+        color: 'rgba(255,104,104)'
     },
     [MonsterType.WATER]: {
         imageUrl:'/img/energyIcons/water.png',
-        color: 'rgba(118,235,124)'
+        color: 'rgba(118, 234, 255)'
     },
     
 }

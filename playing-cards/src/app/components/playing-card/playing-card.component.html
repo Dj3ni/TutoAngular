@@ -2,29 +2,29 @@
     <div id="inside" [style.background-color]="backgroundColor">
         <header>
             <div class="left">
-                <div class="name">{{monster().name}}</div>
+                <div class="name">{{monster.name}}</div>
             </div>
             <div class="right">
-                <div id="hp">{{monster().hp}} HP</div>
-                <img [src]="imageUrl" alt="energy icon" class="energy icon">
+                <div id="hp">{{monster.hp}} HP</div>
+                <img [src]="monsterTypeIcon" alt="energy icon" class="energy icon">
             </div>
         </header>
         <figure id="art">
-            <img [src]="monster().image" alt="pokemon image">
-            <figcaption>{{monster().figureCaption}}</figcaption>
+            <img [src]="monster.image" alt="pokemon image">
+            <figcaption>{{monster.figureCaption}}</figcaption>
         </figure>
         <div id="capacities">
             <div class = "capacity">
                 <div class="main">
                     <div class="cost">
-                        <img [src]="imageUrl" alt="energyIcon" class="energy icon">
-                        <img [src]="imageUrl" alt="energyIcon" class="energy icon">
+                        <img [src]="monsterTypeIcon" alt="energyIcon" class="energy icon">
+                        <img [src]="monsterTypeIcon" alt="energyIcon" class="energy icon">
                     </div>
-                    <div class="name">{{monster().attackName}}</div>
-                    <div class="damage">{{monster().attackStrenght}}</div>
+                    <div class="name">{{monster.attackName}}</div>
+                    <div class="damage">{{monster.attackStrenght}}</div>
                 </div>
             </div>
-            <div class="description">{{monster().attackDescription}}</div>
+            <div class="description">{{monster.attackDescription}}</div>
         </div>
     </div>
 </div>
