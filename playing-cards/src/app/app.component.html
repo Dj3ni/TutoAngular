@@ -10,6 +10,8 @@
 Click-count :{{count}} -->
 
 <!-- <button (click)="toggleMonster()">Toggle Monster</button> -->
+
+<app-searchbar [(search)]="search"/>
 <div id="card-list">
     <!-- <h3>Toggled card</h3> -->
     <!-- Sans signal -->
@@ -17,10 +19,38 @@ Click-count :{{count}} -->
     <!-- Avec signal -->
     <!-- <app-playing-card [monster]="selectedMonster()"/> -->
 
-    <!-- <h3>All cards</h3> -->
-    <app-playing-card *ngFor="let monster of monsters" [monster] = "monster"/>
+    <h3>Filtered monsters</h3>
+    
+    @for (monster of filteredMonsters(); track monster){
+        <app-playing-card [monster]="monster"/>
+    }
+
+    <!-- <app-playing-card *ngFor="let monster of filteredMonsters()" [monster] = "monster"/>    -->
+
+     <!-- <h3>All cards</h3> -->
+    <!-- <app-playing-card *ngFor="let monster of monsters" [monster] = "monster"/> -->
 
     <!-- <app-playing-card />
     <app-playing-card [monster]="monster1"/>
     <app-playing-card [monster]="monster2"/> -->
 </div>
+
+@if(filteredMonsters().length == 0){
+    <div class =" center">No monsters found</div>
+}@else {
+    <div class="center">Found {{filteredMonsters().length}} monsters.</div>
+}
+
+
+<!-- *ngIf -->
+
+<!-- <div class="center" *ngIf="filteredMonsters().length == 0; then notFound else found">
+    
+</div>
+<ng-template #notFound>
+    <div class =" center">No monsters found</div>
+</ng-template>
+
+<ng-template #found>
+    <div class="center">Found {{filteredMonsters().length}} monsters.</div>
+</ng-template> -->
