@@ -16,40 +16,15 @@ import { MonsterService } from './services/monster/monster-service';
 })
 export class AppComponent {
 
-  //Injection du service Monster
-  monsterService = inject(MonsterService); 
-  
   // count : number = 0;
   // search : string = '';
 
   //public monsters! : Monster[];
 
-  public monsters = signal<Monster[]>([]);// Le transformer en signal pour que Angular détecte qu'il peut y avoir des changements
-  
+ 
+  constructor(){}
 
-  search = model('');
-  filteredMonsters = computed(()=>{
-    return this.monsters().filter(m =>m.name.includes(this.search()))
-  })
 
-  constructor(){
-
-    //appel au service Monster
-
-    this.monsters.set(this.monsterService.getAll());
-      
-      // utilisation signal effect()
-
-      // effect(()=>{
-      //   console.log(this.selectedMonster());
-      // })
-  }
-
-  public addMonster(){
-    const genericMonster = new Monster();
-    this.monsterService.add(genericMonster);
-    this.monsters.set(this.monsterService.getAll());
-  }
 
   // public increaseCount(){
   //   this.count++;
@@ -58,11 +33,7 @@ export class AppComponent {
   // toggle Monster
 
   //public selectedMonsterIndex = 0; // Sans signal
-  // Avec signal: 
-  public selectedMonsterIndex = signal(0);
-  public selectedMonster = computed(()=> {
-    return this.monsters()[this.selectedMonsterIndex()]
-  })
+  
   
   
 

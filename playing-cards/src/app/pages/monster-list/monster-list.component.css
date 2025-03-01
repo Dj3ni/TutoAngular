@@ -1,4 +1,4 @@
-/* #card-list {
+#card-list {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -10,4 +10,4 @@
 .center {
     margin-top: 40px;
     text-align: center;
-} */
+}

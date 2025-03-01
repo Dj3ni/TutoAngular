@@ -11,20 +11,20 @@ Click-count :{{count}} -->
 
 <!-- <button (click)="toggleMonster()">Toggle Monster</button> -->
 
-<app-searchbar [(search)]="search"/>
-<div id="card-list">
+
+<!-- <div id="card-list"> -->
     <!-- <h3>Toggled card</h3> -->
     <!-- Sans signal -->
         <!-- <app-playing-card [monster]="monsters[selectedMonsterIndex()]"/> -->
     <!-- Avec signal -->
     <!-- <app-playing-card [monster]="selectedMonster()"/> -->
-
+<!-- 
     <h3>Filtered monsters</h3>
 
     @for (monster of filteredMonsters(); track monster; let i = $index){
         <div>Index {{i}}</div>
         <app-playing-card [monster]="monster"/>
-    }
+    } -->
 
     <!-- <app-playing-card *ngFor="let monster of filteredMonsters()" [monster] = "monster"/>    -->
 
@@ -34,16 +34,16 @@ Click-count :{{count}} -->
     <!-- <app-playing-card />
     <app-playing-card [monster]="monster1"/>
     <app-playing-card [monster]="monster2"/> -->
-</div>
+<!-- </div> -->
 
-@if(filteredMonsters().length == 0){
+<!-- @if(filteredMonsters().length == 0){
     <div class =" center">No monsters found</div>
 }@else {
     <div class="center">Found {{filteredMonsters().length}} monsters.</div>
 }
 <div class = "center">
     <button (click)="addMonster()">Add Default Monster</button>
-</div>
+</div> -->
 
 <!-- *ngIf -->
 
