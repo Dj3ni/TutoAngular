@@ -20,8 +20,9 @@ Click-count :{{count}} -->
     <!-- <app-playing-card [monster]="selectedMonster()"/> -->
 
     <h3>Filtered monsters</h3>
-    
-    @for (monster of filteredMonsters(); track monster){
+
+    @for (monster of filteredMonsters(); track monster; let i = $index){
+        <div>Index {{i}}</div>
         <app-playing-card [monster]="monster"/>
     }
 
@@ -40,7 +41,9 @@ Click-count :{{count}} -->
 }@else {
     <div class="center">Found {{filteredMonsters().length}} monsters.</div>
 }
-
+<div class = "center">
+    <button (click)="addMonster()">Add Default Monster</button>
+</div>
 
 <!-- *ngIf -->
 
