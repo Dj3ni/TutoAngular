@@ -1,4 +1,5 @@
-@if(monsterId()){
+<!-- Testing
+ @if(monsterId()){
     <p>monster {{monsterId()}}</p>
 
     <button (click)="nextMonster()">Next monster</button>
@@ -6,4 +7,23 @@
 }@else{
     <p>monster works!</p>
 }
+ -->
 
+<form (submit)="submit($event)">
+    <div class="form-field">
+        <label for="name">Name</label>
+        <input id ="name" type="text" name = "name" [formControl]="name"/>
+        @if(name.invalid && (name.dirty || name.touched)){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="hp">HP</label>
+        <input id ="hp" type="number" name = "hp" [formControl]="hp"/>
+        @if(hp.invalid && (hp.dirty || hp.touched)){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <button type="submit"[disabled]="name.invalid || hp.invalid">Save</button>
+    <!-- <button (click)="setChanged()">Set changed</button> -->
+</form>
