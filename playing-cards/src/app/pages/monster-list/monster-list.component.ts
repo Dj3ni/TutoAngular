@@ -3,6 +3,7 @@ import { MonsterService } from '../../services/monster/monster-service';
 import { Monster } from '../../models/monster.model';
 import { PlayingCardComponent } from '../../components/playing-card/playing-card.component';
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-monster-list',
@@ -12,7 +13,8 @@ import { SearchbarComponent } from '../../components/searchbar/searchbar.compone
 })
 export class MonsterListComponent {
   //Injection du service Monster
-  monsterService = inject(MonsterService); 
+  private monsterService = inject(MonsterService);
+  private router = inject(Router); 
 
   public monsters = signal<Monster[]>([]);// Le transformer en signal pour que Angular détecte qu'il peut y avoir des changements
   
@@ -32,9 +34,17 @@ export class MonsterListComponent {
     }
 
     public addMonster(){
+      //Upgrade to redirect to the add monster form
+      this.router.navigate(['monster'])
+
+      /*Add generic monster
       const genericMonster = new Monster();
       this.monsterService.add(genericMonster);
-      this.monsters.set(this.monsterService.getAll());
+      this.monsters.set(this.monsterService.getAll());*/
+    }
+
+    public openMonster(monster : Monster){
+      this.router.navigate(['monster', monster.id]);
     }
 
   

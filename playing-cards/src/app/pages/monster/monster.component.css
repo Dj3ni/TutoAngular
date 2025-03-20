@@ -21,3 +21,22 @@ label {
     font-size: x-small;
     color: red;
 }
+
+.preview, .main {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.preview {
+    width: 300px;
+    margin: 20px;
+}
+
+.main {
+    width: calc(100% - 340px);
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}

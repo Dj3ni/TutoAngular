@@ -8,7 +8,7 @@ export class Monster {
     hp : number = 40;
     figureCaption : string = "N°001 Monster";
     attackName : string = "GeoImpact";
-    attackStrenght : number = 60;
+    attackStrength : number = 60;
     attackDescription : string = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia fugiat libero eveniet eos sit alias."
 
     public copy(): Monster{

@@ -9,7 +9,8 @@
 }
  -->
 
-<form (submit)="submit($event)">
+<!-- FormControl -->
+<!-- <form (submit)="submit($event)">
     <div class="form-field">
         <label for="name">Name</label>
         <input id ="name" type="text" name = "name" [formControl]="name"/>
@@ -25,5 +26,87 @@
         }
     </div>
     <button type="submit"[disabled]="name.invalid || hp.invalid">Save</button>
-    <!-- <button (click)="setChanged()">Set changed</button> -->
-</form>
+    <button (click)="setChanged()">Set changed</button>
+</form> -->
+
+
+<div class="preview">
+    <app-playing-card [monster]="monster"/>
+</div>
+<div class="main">
+    <!-- FormGroup / form Builder-->
+
+<form [formGroup]="formGroup" (submit)="submit($event)">
+    <div class="form-field">
+        <label for="name">Name</label>
+        <input id ="name" type="text" name = "name" formControlName ="name"/>
+        @if(isFieldValid('name')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="image">Image</label>
+        <input id ="image" type="file" name = "image" (change)="onFileChange($event)"/>
+        @if(isFieldValid('image')){
+            <!--  -->
+            @if (formGroup.get('hp')?.hasError('required')){
+                <div class = "error">This field is required</div>
+            }
+            @if (formGroup.get('hp')?.hasError('min') || formGroup.get('hp')?.hasError('max')){
+                <div class="error">The value must be between 0 and 200</div>
+            }
+        }
+    </div>
+    <div class="form-field">
+        <label for="type">Type</label>
+        <select id ="type" type="text" name = "type" formControlName ="type">
+            @for (type of monsterTypes; track type) {
+                <option [value]="type">{{type}}</option>
+            }
+        </select>
+    </div>
+    <div class="form-field">
+        <label for="hp">HP</label>
+        <input id ="hp" type="number" name = "hp" formControlName ="hp" min ="formGroup.get('hp')?.min"/>
+        @if(isFieldValid('hp')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="figureCaption">Figure Caption</label>
+        <input id ="figureCaption" type="text" name = "figureCaption" formControlName ="figureCaption"/>
+        @if(isFieldValid('figureCaption')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="attackName">Attack Name</label>
+        <input id ="attackName" type="text" name = "attackName" formControlName ="attackName"/>
+        @if(isFieldValid('attackName')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="attackStrength">Attack Strength</label>
+        <input id ="attackStrength" type="number" name = "attackStrength" formControlName ="attackStrength" min ="formGroup.get('attackStrength')?.min"/>
+        @if(isFieldValid('attackStrength')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="form-field">
+        <label for="attackDescription">Attack Description</label>
+        <input id ="attackDescription" type="text" name = "attackDescription" formControlName ="attackDescription"/>
+        @if(isFieldValid('attackDescription')){
+            <div class = "error">This field is required</div>
+        }
+    </div>
+    <div class="button-container">
+        <button (click)="navigateBack()">Back</button>
+        <button type="submit"[disabled]="formGroup.invalid"> Save </button>
+
+    </div>
+</form> 
+</div>
+
+
+
