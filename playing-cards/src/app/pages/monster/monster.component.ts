@@ -6,10 +6,18 @@ import { MonsterType } from '../../utils/monster.utils';
 import { PlayingCardComponent } from "../../components/playing-card/playing-card.component";
 import { Monster } from '../../models/monster.model';
 import { MonsterService } from '../../services/monster/monster-service';
+// Angular Materials
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-monster',
-  imports: [ReactiveFormsModule, PlayingCardComponent],
+  imports: [
+    ReactiveFormsModule, PlayingCardComponent, 
+    MatButtonModule, MatInputModule, MatFormFieldModule, MatSelectModule
+  ],
   templateUrl: './monster.component.html',
   styleUrl: './monster.component.css'
 })
@@ -139,6 +147,10 @@ export class MonsterComponent implements OnInit, OnDestroy{
   // }
   public navigateBack():void {
     this._router.navigate(['/home']);
+  }
+
+  public deleteMonster():void{
+    
   }
 
 
