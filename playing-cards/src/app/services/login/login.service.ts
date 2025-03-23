@@ -4,8 +4,8 @@ import {User} from '../../models/user.model';
 import { map, Observable, tap } from 'rxjs';
 
 export interface Credentials {
-  username : string,
-  password : string
+  username : string;
+  password : string;
 }
 
 @Injectable({

@@ -30,13 +30,14 @@ export class LoginComponent implements OnDestroy{
 
   public login(){
     this._loginSubscription = this._loginService.login(this.loginFormGroup.value as Credentials).subscribe({
+      //if succes proceed:
       next: (result : User | null | undefined) =>{
         this.navigateHome();
       },
+      // else :
       error : error =>{
         this.invalidCredentials = true;
       }
-      
     })
   }
 
@@ -44,7 +45,7 @@ export class LoginComponent implements OnDestroy{
     this._router.navigate(["Home"]);
   }
 
-   ngOnDestroy(): void {
+  ngOnDestroy(): void {
      this._loginSubscription?.unsubscribe();
    }
 }
