@@ -13,7 +13,7 @@ export interface Credentials {
 })
 export class LoginService {
   private _http = inject(HttpClient);
-  private Base_URL = 'http://localhost:8000';
+  private Base_URL = 'http://localhost:8000/';
 
   public user = signal< User | null | undefined >(undefined)
 
