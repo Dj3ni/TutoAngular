@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteMonsterDialogComponent } from '../../components/delete-monster-dialog/delete-monster-dialog.component';
 
 @Component({
   selector: 'app-monster',
@@ -26,6 +28,7 @@ export class MonsterComponent implements OnInit, OnDestroy{
   private _route = inject(ActivatedRoute); // pour récupérer les infos de la route
   private _router = inject(Router); // Pour naviger entre les pages
   private _monsterService = inject(MonsterService); //Pour accéder aux méthodes du service
+  private readonly _dialog = inject(MatDialog); // Pour importer les éléments de Dialog
 
   // public monsterId = signal< number | undefined>(undefined);
   public monsterId = -1;
@@ -150,7 +153,13 @@ export class MonsterComponent implements OnInit, OnDestroy{
   }
 
   public deleteMonster():void{
-    
+    const dialogRef = this._dialog.open(DeleteMonsterDialogComponent);
+    dialogRef.afterClosed().subscribe(confirmation =>{
+      if(confirmation){
+        this._monsterService.delete(this.monsterId);
+        this.navigateBack();
+      }
+    })
   }
 
 
