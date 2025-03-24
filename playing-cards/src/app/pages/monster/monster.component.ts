@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { filter, of, Subscription, switchMap } from 'rxjs';
 import { MonsterType } from '../../utils/monster.utils';
 import { PlayingCardComponent } from "../../components/playing-card/playing-card.component";
 import { Monster } from '../../models/monster.model';
@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteMonsterDialogComponent } from '../../components/delete-monster-dialog/delete-monster-dialog.component';
+import { MonsterApiService } from '../../services/monsterApi/monster-api.service';
 
 @Component({
   selector: 'app-monster',
@@ -29,6 +30,11 @@ export class MonsterComponent implements OnInit, OnDestroy{
   private _router = inject(Router); // Pour naviger entre les pages
   private _monsterService = inject(MonsterService); //Pour accéder aux méthodes du service
   private readonly _dialog = inject(MatDialog); // Pour importer les éléments de Dialog
+  
+  //Si utilise Api:
+  private _monsterApiService = inject(MonsterApiService)
+  private _saveSubscription : Subscription | null = null;
+  private _deleteSubscription : Subscription | null = null;
 
   // public monsterId = signal< number | undefined>(undefined);
   public monsterId = -1;
@@ -87,6 +93,21 @@ export class MonsterComponent implements OnInit, OnDestroy{
       this._monsterService.update(this.monster);
     }
     this.navigateBack();
+
+    //Si utilise Api
+    event.preventDefault();
+    let saveObservable = null;
+    if(this.monsterId === -1){
+      saveObservable = this._monsterApiService.add(this.monster)
+    }
+    else{
+      this.monster.id = this.monsterId;
+      saveObservable = this._monsterApiService.update(this.monster);
+    }
+    this._saveSubscription = saveObservable.subscribe(_ =>{
+      this.navigateBack();
+    })
+
   }
 
   public isFieldValid(fieldName : string): boolean | undefined{
@@ -136,11 +157,33 @@ export class MonsterComponent implements OnInit, OnDestroy{
         }
       }      
     })
+
+    //Si utilise Api: 
+    this._routeSubscription = this._route.params.pipe(
+      switchMap(params =>{
+          if(params['monster']){
+            this.monsterId = parseInt(params["monster"]);
+            return this._monsterApiService.getById(this.monsterId)
+          }
+          return of(null); // Si existe pas, transforme observable en null
+      })
+
+    ).subscribe(monster =>{
+        if(monster){
+          this.monster  = monster;
+          this.formGroup.patchValue(this.monster)
+        }
+      }      
+    )
+
   }
 
   ngOnDestroy(): void {
     this._formValueSubscription?.unsubscribe();
     this._routeSubscription?.unsubscribe();
+    //Si api:
+    this._deleteSubscription?.unsubscribe();
+    this._saveSubscription?.unsubscribe();
   }
 
   // public nextMonster(){
@@ -160,6 +203,16 @@ export class MonsterComponent implements OnInit, OnDestroy{
         this.navigateBack();
       }
     })
+    // si utilise Api
+    const dialogRefApi = this._dialog.open(DeleteMonsterDialogComponent);
+    dialogRefApi.afterClosed().pipe(
+      filter(confirmation => confirmation),
+      switchMap(_=> this._monsterApiService.delete(this.monsterId))
+    )
+    .subscribe(_=>{
+      this.navigateBack();      
+    })
+
   }
 
 
