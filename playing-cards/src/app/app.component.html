@@ -1,3 +1,16 @@
+<!-- Barre de navigation -->
+<mat-toolbar>
+    <button mat-icon-button (click)="navigateHome()"><mat-icon>Home</mat-icon>></button>
+    @if(loginService.user()){
+        <p>Welcome {{loginService.user()?.firstname}} {{loginService.user()?.lastname}}</p>
+        <button mat-flat-button color = "warn" (click)="logout()">Logout</button>
+    }
+    @else{
+        <p>Welcome</p>
+        <button mat-flat-button color = "warn" (click)="navigateToLogin()">Login</button>
+    }
+</mat-toolbar>
+
 
 <!-- Appel au component qui a la route "home"-->
 <router-outlet></router-outlet>
