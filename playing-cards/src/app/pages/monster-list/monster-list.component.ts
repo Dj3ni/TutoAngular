@@ -6,10 +6,11 @@ import { SearchbarComponent } from '../../components/searchbar/searchbar.compone
 import { Router } from '@angular/router';
 import { toSignal} from '@angular/core/rxjs-interop';
 import { MonsterApiService } from '../../services/monsterApi/monster-api.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-monster-list',
-  imports: [PlayingCardComponent, SearchbarComponent],
+  imports: [PlayingCardComponent, SearchbarComponent, MatButtonModule],
   templateUrl: './monster-list.component.html',
   styleUrl: './monster-list.component.css'
 })
