@@ -16,7 +16,7 @@ export class Monster implements IMonster{
         return Object.assign(new Monster(),this)
     }
 
-    public fromJson(monsterJson : IMonster): Monster{
+    public static fromJson(monsterJson : IMonster): Monster{
         return Object.assign(new Monster(), monsterJson);
     }
 
